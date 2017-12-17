@@ -27,14 +27,23 @@ export default class App extends Component<{}> {
   cadastrarUsuario(){
     let usuario = firebase.auth();
     let email = 'werliton.carlos@gmail.com';
-    let senha = 'leto123';
+    let senha = '';
 
     usuario.createUserWithEmailAndPassword(email, senha)
     .catch(
       (erro) =>{
+        var errors = ['auth/weak-password','auth/expired-action-code','auth/invalid-action-code'];
+        var errorsTranslate = [
+        'A senha deve ter mais que 6 caracteres',
+        'A senha expirou','Senha inválida'];
+        var messageError = '';
+        //if(errors.indexOf(erro.code) != -1){
+          //Pegando a mensagem referente ao codigo de retorno no erro
+          messageError = errorsTranslate[errors.indexOf(erro.code)];
+        //}
         // possibilidade do obj erro
         // erro.code, erro.message
-        Alert.alert(erro.message);
+        Alert.alert(messageError);
       }
     );
   }
