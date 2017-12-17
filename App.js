@@ -9,7 +9,11 @@ import {
 } from 'react-native';
 
 export default class App extends Component<{}> {
-    var database ;
+
+    constructor(props){
+        super(props);
+        var database
+    }
 
   componentWillMount(){
      // Initialize Firebase
@@ -26,12 +30,25 @@ export default class App extends Component<{}> {
   }
 
   salvarDados(){
-    let database = firebase.database();
-    database.ref('pontuacao').set('199');
+      // First way to save data
+    this.database.chid('001').child('nome').set('werliton');
+    // Second way to save data
+      // push() generate cod random of insertion
+      this.database.push().child('nome').set('Lucas');
+      // Thrist way to save using push()
+      // here save an object literal
+      this.database.push().set({
+          name: 'Werliton',
+
+      });
   }
 
   atualizaDados(){
 
+  }
+
+  removerDados(){
+        
   }
 
   render() {
