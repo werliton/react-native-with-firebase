@@ -4,11 +4,12 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 export default class App extends Component<{}> {
-
+    var database ;
 
   componentWillMount(){
      // Initialize Firebase
@@ -20,15 +21,28 @@ export default class App extends Component<{}> {
       storageBucket: "",
       messagingSenderId: "1033359965567"
     };
-    firebase.initializeApp(config);
-    
+   firebase.initializeApp(config);
+      this.database = firebase.database().ref('funcionarios');
+  }
+
+  salvarDados(){
+    let database = firebase.database();
+    database.ref('pontuacao').set('199');
+  }
+
+  atualizaDados(){
+
   }
 
   render() {
     return (
       <View>
+        <Button 
+          onPress={()=>{this.salvarDados;}}
+          title='Salvar dados'
+          color='#841584'
+        />
         <Text>Meu app</Text>
-
       </View>
     );
   }
