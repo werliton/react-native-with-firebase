@@ -30,25 +30,30 @@ export default class App extends Component<{}> {
   }
 
   salvarDados(){
-      // First way to save data
+     //-> First way to save data
     this.database.chid('001').child('nome').set('werliton');
-    // Second way to save data
-      // push() generate cod random of insertion
-      this.database.push().child('nome').set('Lucas');
-      // Thrist way to save using push()
-      // here save an object literal
-      this.database.push().set({
-          name: 'Werliton',
 
-      });
+    //-> Second way to save data
+    // push() generate cod random of insertion
+    this.database.push().child('nome').set('Lucas');
+
+    // Thrist way to save using push()
+    // here save an object literal
+    this.database.push().set({
+        name: 'Werliton',
+        age: 28
+    });
   }
 
   atualizaDados(){
-
+    // Para atualizar dados basta usar o mesmo metodo set()
+     // acessar o cod identificador
+      // here update the name Werliton, save before, for Carlos
+     this.database.child('001').child('nome').set('Carlos');
   }
 
   removerDados(){
-        
+
   }
 
   render() {
