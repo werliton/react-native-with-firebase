@@ -53,7 +53,10 @@ export default class App extends Component<{}> {
   }
 
   removerDados(){
-
+    // To remove child, just get the child and to use method remove()
+      this.database.child('001').remove();
+      // Here remove the reference for complete
+      this.database.remove();
   }
 
   render() {
