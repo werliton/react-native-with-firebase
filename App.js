@@ -29,7 +29,14 @@ export default class App extends Component<{}> {
     let email = 'werliton.carlos@gmail.com';
     let senha = 'leto123';
 
-    usuario.createUserWithEmailAndPassword(email, senha);
+    usuario.createUserWithEmailAndPassword(email, senha)
+    .catch(
+      (erro) =>{
+        // possibilidade do obj erro
+        // erro.code, erro.message
+        Alert.alert(erro.message);
+      }
+    );
   }
  
   render() {
