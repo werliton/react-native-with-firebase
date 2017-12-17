@@ -24,28 +24,15 @@ export default class App extends Component<{}> {
      firebase.initializeApp(config);
   }
 
-  cadastrarUsuario(){
+  verificarUsuarioLogado(){
     let usuario = firebase.auth();
-    let email = 'werliton.carlos@gmail.com';
-    let senha = '';
+    const usuarioAtual = usuario.currentUser;
 
-    usuario.createUserWithEmailAndPassword(email, senha)
-    .catch(
-      (erro) =>{
-        var errors = ['auth/weak-password','auth/expired-action-code','auth/invalid-action-code'];
-        var errorsTranslate = [
-        'A senha deve ter mais que 6 caracteres',
-        'A senha expirou','Senha inválida'];
-        var messageError = '';
-        //if(errors.indexOf(erro.code) != -1){
-          //Pegando a mensagem referente ao codigo de retorno no erro
-          messageError = errorsTranslate[errors.indexOf(erro.code)];
-        //}
-        // possibilidade do obj erro
-        // erro.code, erro.message
-        Alert.alert(messageError);
-      }
-    );
+    if (usuarioAtual) {
+      Alert.alert('Usario logado');
+    } else {
+      Alert.alert('Usario não esta logado');
+    }
   }
  
   render() {
@@ -53,8 +40,8 @@ export default class App extends Component<{}> {
       <View style={{flexDirection:'column'}}>
        
         <View style={{marginTop:20}}>
-          <Button title='Cadastrar usuario' 
-          onPress={this.cadastrarUsuario}
+          <Button title='Verificar usuario logado' 
+          onPress={this.verificarUsuarioLogado}
           color='#841584'
         />
         </View>
