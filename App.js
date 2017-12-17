@@ -59,12 +59,31 @@ export default class App extends Component<{}> {
       this.database.remove();
   }
 
+  listarDados(){
+    var pontuacao = firebase.database().ref('pontuacao');
+    /*
+     Methods possible
+     - value: escuta e recupera todos os nos
+     - child_added : retorna somente quando for adicionado um novo no
+     - child_changed: retorna somente quando for alterado um no
+     - child_removed: retorna somente quando for deletado um no
+     - child_moved: retorna somente quando for movido um no
+      */
+
+    pontuacao.on('');
+  }
+
   render() {
     return (
       <View>
         <Button 
           onPress={()=>{this.salvarDados;}}
           title='Salvar dados'
+          color='#841584'
+        />
+          <Button
+          onPress={()=>{this.listarDados;}}
+          title='Listar dados'
           color='#841584'
         />
         <Text>Meu app</Text>
