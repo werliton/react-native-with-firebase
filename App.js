@@ -36,9 +36,12 @@ export default class App extends Component<{}> {
           Alert.alert('Usario não esta logado');
         }
       }
-    );
+    );   
+  }
 
-   
+  deslogarUsuario(){
+    let usuario = firebase.auth();
+    usuario.signOut();
   }
  
   render() {
@@ -48,6 +51,13 @@ export default class App extends Component<{}> {
         <View style={{marginTop:20}}>
           <Button title='Verificar usuario logado' 
           onPress={this.verificarUsuarioLogado}
+          color='#841584'
+        />
+        </View>
+
+        <View style={{marginTop:20}}>
+          <Button title='Deslogar usuario' 
+          onPress={this.deslogarUsuario}
           color='#841584'
         />
         </View>
