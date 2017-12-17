@@ -24,6 +24,20 @@ export default class App extends Component<{}> {
      firebase.initializeApp(config);
   }
 
+  cadastrarUsuario(){
+    var email= "werlitoncarlos@gmail2.com";
+    var senha = "letox123";
+    let usuario = firebase.auth();
+
+    usuario.createUserWithEmailAndPassword(email, senha)
+    .catch(
+      (erro)=>{
+        Alert.alert(erro.message);
+      }
+    );
+
+  }
+
   verificarUsuarioLogado(){
     let usuario = firebase.auth();
     // Verificar qqr mudança de estado no usuário logado
@@ -31,9 +45,9 @@ export default class App extends Component<{}> {
     usuario.onAuthStateChanged(
       (usuarioAtual)=>{
          if (usuarioAtual) {
-          Alert.alert('Usario logado');
+          Alert.alert('Usuario logado');
         } else {
-          Alert.alert('Usario não esta logado');
+          Alert.alert('Usuario não esta logado');
         }
       }
     );   
@@ -43,10 +57,31 @@ export default class App extends Component<{}> {
     let usuario = firebase.auth();
     usuario.signOut();
   }
+
+  logarUsuario(){
+    var email= "werlitoncarlos@gmail2.com";
+    var senha = "letox123";
+    let usuario = firebase.auth();
+
+    usuario.signInWithEmailAndPassword(email, senha)
+    .catch(
+      (erro)=>{
+        Alert.alert(erro.message);
+      }
+    );
+
+  }
  
   render() {
     return (
       <View style={{flexDirection:'column'}}>
+
+        <View style={{marginTop:20}}>
+          <Button title='Cadastrar usuário' 
+          onPress={this.cadastrarUsuario}
+          color='#841584'
+        />
+        </View>
        
         <View style={{marginTop:20}}>
           <Button title='Verificar usuario logado' 
@@ -61,6 +96,14 @@ export default class App extends Component<{}> {
           color='#841584'
         />
         </View>
+
+        <View style={{marginTop:20}}>
+          <Button title='Logar usuario' 
+          onPress={this.logarUsuario}
+          color='#841584'
+        />
+        </View>
+
       </View>
     );
   }
